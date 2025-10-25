@@ -1,11 +1,11 @@
 # Core dependencies
 strands-agents
 strands-agents-tools
-strands-agents[anthropic]
-strands-agents[openai]
-python-dotenv
-bedrock-agentcore
-bedrock-agentcore-starter-toolkit
+# strands-agents[anthropic]
+# strands-agents[openai]
+# python-dotenv
+# bedrock-agentcore
+# bedrock-agentcore-starter-toolkit
 
 
 # Optional - uncomment as needed
