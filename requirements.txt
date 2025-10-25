@@ -1,0 +1,15 @@
+# Core dependencies
+strands-agents
+strands-agents-tools
+strands-agents[anthropic]
+strands-agents[openai]
+python-dotenv
+bedrock-agentcore
+bedrock-agentcore-starter-toolkit
+
+
+# Optional - uncomment as needed
+# strands-agents[otel]  # For observability/tracing
+# duckduckgo-search     # For web search tool
+# requests              # For HTTP requests
+# boto3                 # For AWS services
