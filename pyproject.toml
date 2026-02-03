@@ -1,7 +1,260 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
-name = "strands-tools"
+name = "strands-pack"
 version = "0.1.0"
-description = "Project focused on building strands tools"
+description = "Custom tool library for Strands Agents"
 readme = "README.md"
-requires-python = ">=3.12.9"
-dependencies = []
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Du'An Lightfoot", email = "29664932+labeveryday@users.noreply.github.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "strands-agents>=0.1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/strands_pack"]
+
+[project.urls]
+Homepage = "https://github.com/labeveryday/strands-pack"
+Repository = "https://github.com/labeveryday/strands-pack"
+Documentation = "https://github.com/labeveryday/strands-pack#readme"
+
+[project.optional-dependencies]
+# .env loading for examples / local development
+dotenv = ["python-dotenv>=1.0.0"]
+
+# Shared Google OAuth helper (used by google_auth tool + examples/google_oauth_token.py)
+google_auth = [
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Gemini tools (image, video, music generation)
+gemini = ["google-genai>=1.0.0"]
+
+# OpenAI tools (openai_image, openai_video, openai_embeddings)
+openai = ["openai>=1.0.0"]
+
+# Carbon code image generation
+carbon = ["playwright>=1.42.0"]
+
+# Playwright browser automation tools
+playwright = ["playwright>=1.42.0"]
+
+# AWS tools (SNS, SQS)
+aws = ["boto3>=1.26.0"]
+
+# Gmail API tools
+gmail = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Google Calendar API tools
+calendar = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Google Forms API tools
+forms = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Google Drive API tools
+drive = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Google Sheets API tools
+sheets = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Google Docs API tools
+docs = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Google Tasks API tools
+tasks = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# Discord bot tools
+discord = ["requests>=2.28.0"]
+
+# GitHub API tools
+github = ["requests>=2.28.0"]
+
+# Image manipulation tools
+image = ["Pillow>=10.0.0"]
+
+# PDF manipulation tools
+pdf = ["pymupdf>=1.23.0"]
+
+# Local embeddings (SentenceTransformers)
+local_embeddings = ["sentence-transformers>=2.2.0"]
+
+# OpenAI embeddings (alias for backwards compatibility)
+openai_embeddings = ["openai>=1.0.0"]
+
+# YouTube Data API tools
+youtube = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+]
+
+# YouTube public transcript tools (unofficial)
+youtube_transcript = [
+    "youtube-transcript-api>=0.6.2",
+]
+
+# Notion API tools
+notion = ["notion-client>=2.0.0"]
+
+# Excel file manipulation
+excel = ["openpyxl>=3.1.0"]
+
+# Audio file manipulation (requires FFmpeg system binary)
+audio = ["pydub>=0.25.0"]
+
+# Calendly API tools
+calendly = ["requests>=2.28.0"]
+
+# LinkedIn API tools
+linkedin = ["requests>=2.28.0"]
+
+# X (Twitter) API tools
+x = ["requests>=2.28.0"]
+
+# QR Code generation and reading
+qrcode = [
+    "qrcode>=7.4.0",
+    "pyzbar>=0.1.9",
+    "Pillow>=10.0.0",
+]
+
+# Twilio SMS/Voice/WhatsApp
+twilio = ["requests>=2.28.0"]
+
+# SQLite - no extra dependencies (uses Python stdlib)
+# sqlite = []  # Listed for documentation but not needed
+
+# ChromaDB vector database
+chromadb = ["chromadb>=0.4.0"]
+
+# Philips Hue Bridge control
+hue = ["phue>=1.1"]
+
+# All tools
+all = [
+    "strands-pack[dotenv]",
+    "strands-pack[google_auth]",
+    "strands-pack[gemini]",
+    "strands-pack[openai]",
+    "strands-pack[carbon]",
+    "strands-pack[playwright]",
+    "strands-pack[aws]",
+    "strands-pack[gmail]",
+    "strands-pack[calendar]",
+    "strands-pack[forms]",
+    "strands-pack[drive]",
+    "strands-pack[sheets]",
+    "strands-pack[docs]",
+    "strands-pack[tasks]",
+    "strands-pack[discord]",
+    "strands-pack[github]",
+    "strands-pack[image]",
+    "strands-pack[pdf]",
+    "strands-pack[local_embeddings]",
+    "strands-pack[openai]",
+    "strands-pack[openai_embeddings]",
+    "strands-pack[youtube]",
+    "strands-pack[youtube_transcript]",
+    "strands-pack[notion]",
+    "strands-pack[excel]",
+    "strands-pack[audio]",
+    "strands-pack[calendly]",
+    "strands-pack[linkedin]",
+    "strands-pack[x]",
+    "strands-pack[qrcode]",
+    "strands-pack[twilio]",
+    "strands-pack[chromadb]",
+    "strands-pack[hue]",
+]
+
+# Development dependencies
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "python-dotenv>=1.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "bandit>=1.7.0",
+    "requests>=2.28.0",
+    "openai>=1.0.0",
+]
+
+[tool.ruff]
+line-length = 150
+include = ["src/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "F401",  # Unused imports - we use lazy imports for optional dependencies
+    "E741",  # Ambiguous variable names - we use 'l' for light in Hue tool
+    "E501",  # Line too long - docstrings and comments can exceed limit
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/strands_pack/qrcode_tool.py" = ["F811"]  # Intentional redefinition for SVG factory
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
