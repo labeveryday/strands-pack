@@ -341,11 +341,15 @@ def youtube_read(
 
     Requires YOUTUBE_API_KEY environment variable or api_key parameter.
 
+    Environment defaults (so you can omit IDs in prompts):
+        YOUTUBE_CHANNEL_ID: Used by get_channels, list_playlists, and search
+        YOUTUBE_UPLOADS_PLAYLIST_ID: Used by list_playlist_items
+
     Args:
         action: The operation to perform. One of:
             - "search": Search for videos, channels, or playlists
             - "get_videos": Get video details by ID(s)
-            - "get_channels": Get channel details
+            - "get_channels": Get channel details (uses YOUTUBE_CHANNEL_ID if no ID provided)
             - "list_playlists": List playlists for a channel
             - "list_playlist_items": List items in a playlist
             - "get_comments": List comments for a video
@@ -358,10 +362,10 @@ def youtube_read(
         published_before: Filter by publish date (RFC3339 format)
         video_ids: Video ID(s) for get_videos
         video_id: Video ID for get_comments
-        channel_ids: Channel ID(s) for get_channels
-        channel_id: Channel ID for search or list_playlists
+        channel_ids: Channel ID(s) for get_channels (defaults to YOUTUBE_CHANNEL_ID)
+        channel_id: Channel ID for search or list_playlists (defaults to YOUTUBE_CHANNEL_ID)
         for_username: Username for get_channels
-        playlist_id: Playlist ID for list_playlist_items
+        playlist_id: Playlist ID for list_playlist_items (defaults to YOUTUBE_UPLOADS_PLAYLIST_ID)
         include_replies: Include replies when listing comments
         text_format: Comment format: "plainText" or "html"
         part: API response parts (default varies by action)
@@ -376,6 +380,7 @@ def youtube_read(
     Examples:
         youtube_read(action="search", q="python tutorial", max_results=5)
         youtube_read(action="get_videos", video_ids="dQw4w9WgXcQ")
+        youtube_read(action="get_channels")  # Uses YOUTUBE_CHANNEL_ID env var
         youtube_read(action="get_channels", channel_ids="UC_x5XG1OV2P6uZZ5FSM9Ttw")
         youtube_read(action="list_playlists", channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     """
@@ -434,9 +439,13 @@ def youtube_read(
             )
 
         if action == "get_channels":
+            # Use default channel_id if no selector provided
+            use_channel_ids = channel_ids
+            if not channel_ids and not for_username and channel_id:
+                use_channel_ids = channel_id
             return _get_channels(
                 service=service,
-                channel_ids=channel_ids,
+                channel_ids=use_channel_ids,
                 for_username=for_username,
                 part=part or "snippet,contentDetails,statistics",
                 fields=fields,

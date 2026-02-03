@@ -269,6 +269,25 @@ def test_youtube_get_channels_by_id():
         assert len(result["items"]) == 1
 
 
+def test_youtube_get_channels_uses_env_default_channel_id(monkeypatch):
+    from strands_pack import youtube_read
+
+    mock_service = MagicMock()
+    mock_service.channels.return_value.list.return_value.execute.return_value = {
+        "items": [{"id": "UC_ENV_789", "snippet": {"title": "My Channel"}, "statistics": {"subscriberCount": "1000"}}]
+    }
+
+    monkeypatch.setenv("YOUTUBE_CHANNEL_ID", "UC_ENV_789")
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
+        mock_get_service.return_value = mock_service
+        # Call get_channels without any channel_ids - should use env default
+        result = youtube_read(action="get_channels")
+        assert result["success"] is True
+        mock_service.channels.return_value.list.assert_called_once()
+        _, call_kwargs = mock_service.channels.return_value.list.call_args
+        assert call_kwargs["id"] == "UC_ENV_789"
+
+
 def test_youtube_api_key_required():
     from strands_pack import youtube_read
 

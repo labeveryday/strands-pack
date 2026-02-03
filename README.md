@@ -3,7 +3,7 @@
 [![PyPI version](https://badge.fury.io/py/strands-pack.svg)](https://badge.fury.io/py/strands-pack)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-832%20passed-brightgreen.svg)](https://github.com/labeveryday/strands-pack)
+[![Tests](https://img.shields.io/badge/tests-833%20passed-brightgreen.svg)](https://github.com/labeveryday/strands-pack)
 
 **51 ready-to-use tools for [Strands Agents](https://github.com/strands-agents/sdk-python)**
 
