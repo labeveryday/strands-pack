@@ -7,7 +7,8 @@ Why this exists
 --------------
 YouTube "transcripts" are not consistently accessible via the official YouTube Data API v3
 unless you have caption-owner access. For your *own* videos, use the official captions flow:
-`youtube(action="list_captions" / "download_caption", auth_type="authorized_user", ...)`.
+`youtube_read(action="list_captions" / "download_caption", ...)` with OAuth credentials configured
+(see the `google_auth` tool and `GOOGLE_AUTHORIZED_USER_FILE`).
 
 For public videos, this tool uses the community-maintained `youtube-transcript-api` package
 to retrieve transcript segments when YouTube exposes them.

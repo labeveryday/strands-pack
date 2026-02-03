@@ -1,7 +1,7 @@
 # strands-pack Tool Checklist
 
 **Total Tools:** 51
-**Test Status:** 831 passed, 0 failing, 11 skipped
+**Test Status:** 832 passed, 0 failing, 11 skipped
 
 ## Communication & Social
 
@@ -29,7 +29,7 @@
 
 | Tool | Module | Tests | Live Tested | Notes |
 |------|--------|-------|-------------|-------|
-| youtube_read | `youtube` | 18 pass | Yes | **Refactored** - Read-only (API key or OAuth). `youtube` is an alias. Includes `get_comments` + search filters. |
+| youtube_read | `youtube` | 18 pass | Yes | **Refactored** - Read-only (API key only). `youtube` is an alias. 6 actions: search, get_videos, get_channels, list_playlists, list_playlist_items, get_comments. |
 | youtube_write | `youtube_write` | 8 pass | Yes | **Refactored** - 10 actions: update_video_metadata, playlist CRUD, delete_video, set_thumbnail, set_video_privacy |
 | youtube_analytics | `youtube_analytics` | 9 pass | Yes | **Refactored** - explicit params |
 | youtube_transcript | `youtube_transcript` | 4 pass | Yes | **Refactored** - explicit params, v1.x API compatibility |

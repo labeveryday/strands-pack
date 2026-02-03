@@ -154,7 +154,7 @@ from strands_pack.utilities import (
 from strands_pack.x import x
 
 # YouTube Data API tool (require google-api-python-client + google-auth)
-from strands_pack.youtube import youtube, youtube_read
+from strands_pack.youtube_read import youtube, youtube_read
 from strands_pack.youtube_write import youtube_write
 
 # YouTube Analytics API tool (require google-api-python-client + google-auth)

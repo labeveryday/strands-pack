@@ -72,6 +72,21 @@ def test_youtube_write_add_video_to_playlist_calls_insert(monkeypatch):
         assert call_kwargs["body"]["snippet"]["resourceId"]["videoId"] == "v1"
 
 
+def test_youtube_write_add_video_to_playlist_uses_youtube_uploads_playlist_id(monkeypatch):
+    from strands_pack import youtube_write
+
+    mock_service = MagicMock()
+    mock_service.playlistItems.return_value.insert.return_value.execute.return_value = {"id": "pli1"}
+
+    monkeypatch.setenv("YOUTUBE_UPLOADS_PLAYLIST_ID", "PL_ENV_2")
+    with patch("strands_pack.youtube_write._get_write_service") as mock_get_service:
+        mock_get_service.return_value = mock_service
+        result = youtube_write(action="add_video_to_playlist", video_id="v1")
+        assert result["success"] is True
+        _, call_kwargs = mock_service.playlistItems.return_value.insert.call_args
+        assert call_kwargs["body"]["snippet"]["playlistId"] == "PL_ENV_2"
+
+
 def test_youtube_write_remove_by_playlist_item_id_calls_delete():
     from strands_pack import youtube_write
 

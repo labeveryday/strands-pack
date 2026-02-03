@@ -1,14 +1,12 @@
-"""Tests for YouTube tool (offline/mocked)."""
+"""Tests for YouTube read tool (offline/mocked)."""
 
-import tempfile
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 
 def test_youtube_unknown_action():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(action="nope")
         assert result["success"] is False
@@ -18,7 +16,7 @@ def test_youtube_unknown_action():
 def test_youtube_search_requires_q():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(action="search")
         assert result["success"] is False
@@ -33,7 +31,7 @@ def test_youtube_search_calls_api():
         "items": [{"id": 1}]
     }
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(
             action="search", q="ai agents", max_results=5, search_type="video"
@@ -54,7 +52,7 @@ def test_youtube_search_video_filters_duration_definition():
         "items": [{"id": 1}]
     }
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(
             action="search",
@@ -73,7 +71,7 @@ def test_youtube_search_video_filters_duration_definition():
 def test_youtube_search_video_filters_rejected_for_non_video():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(
             action="search",
@@ -93,7 +91,7 @@ def test_youtube_get_videos_calls_api():
         "items": [{"id": "x"}]
     }
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(action="get_videos", video_ids=["a", "b"], part="snippet")
         assert result["success"] is True
@@ -105,7 +103,7 @@ def test_youtube_get_videos_calls_api():
 def test_youtube_get_channels_requires_selector():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(action="get_channels")
         assert result["success"] is False
@@ -115,7 +113,7 @@ def test_youtube_get_channels_requires_selector():
 def test_youtube_list_playlist_items_requires_playlist_id():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(action="list_playlist_items")
         assert result["success"] is False
@@ -131,7 +129,7 @@ def test_youtube_list_playlist_items_uses_env_default_playlist_id(monkeypatch):
     }
 
     monkeypatch.setenv("MY_UPLOADED_VIDEO_PLAYLIST_ID", "PL_UPLOADS_123")
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(action="list_playlist_items")
         assert result["success"] is True
@@ -140,20 +138,10 @@ def test_youtube_list_playlist_items_uses_env_default_playlist_id(monkeypatch):
         assert call_kwargs["playlistId"] == "PL_UPLOADS_123"
 
 
-def test_youtube_list_captions_requires_video_id():
-    from strands_pack import youtube_read
-
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
-        mock_get_service.return_value = MagicMock()
-        result = youtube_read(action="list_captions")
-        assert result["success"] is False
-        assert "video_id is required" in result["error"]
-
-
 def test_youtube_get_comments_requires_video_id():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(action="get_comments")
         assert result["success"] is False
@@ -169,7 +157,7 @@ def test_youtube_get_comments_calls_api():
         "nextPageToken": "tok",
     }
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(action="get_comments", video_id="v1", max_results=5, include_replies=True)
         assert result["success"] is True
@@ -183,38 +171,14 @@ def test_youtube_get_comments_calls_api():
         assert result["next_page_token"] == "tok"
 
 
-def test_youtube_download_caption_writes_file():
+def test_youtube_list_playlists_requires_channel_id():
     from strands_pack import youtube_read
 
-    mock_service = MagicMock()
-    mock_service.captions.return_value.download.return_value.execute.return_value = (
-        b"hello"
-    )
-
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
-        mock_get_service.return_value = mock_service
-        with tempfile.TemporaryDirectory() as tmpdir:
-            out = Path(tmpdir) / "t.srt"
-            result = youtube_read(
-                action="download_caption",
-                caption_id="C1",
-                output_path=str(out),
-                tfmt="srt",
-            )
-
-            assert result["success"] is True
-            assert out.exists()
-            assert out.read_text(encoding="utf-8") == "hello"
-
-
-def test_youtube_list_playlists_requires_channel_or_mine():
-    from strands_pack import youtube_read
-
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = MagicMock()
         result = youtube_read(action="list_playlists")
         assert result["success"] is False
-        assert "Provide one of:" in result["error"]
+        assert "channel_id is required" in result["error"]
 
 
 def test_youtube_list_playlists_uses_env_default_channel_id(monkeypatch):
@@ -227,13 +191,48 @@ def test_youtube_list_playlists_uses_env_default_channel_id(monkeypatch):
     }
 
     monkeypatch.setenv("MY_CHANNEL_ID", "UC_ENV_123")
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(action="list_playlists")
         assert result["success"] is True
         mock_service.playlists.return_value.list.assert_called_once()
         _, call_kwargs = mock_service.playlists.return_value.list.call_args
         assert call_kwargs["channelId"] == "UC_ENV_123"
+
+
+def test_youtube_list_playlists_uses_env_youtube_channel_id(monkeypatch):
+    from strands_pack import youtube_read
+
+    mock_service = MagicMock()
+    mock_service.playlists.return_value.list.return_value.execute.return_value = {
+        "items": [{"id": "pl1"}],
+        "nextPageToken": None,
+    }
+
+    monkeypatch.setenv("YOUTUBE_CHANNEL_ID", "UC_ENV_456")
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
+        mock_get_service.return_value = mock_service
+        result = youtube_read(action="list_playlists")
+        assert result["success"] is True
+        _, call_kwargs = mock_service.playlists.return_value.list.call_args
+        assert call_kwargs["channelId"] == "UC_ENV_456"
+
+
+def test_youtube_list_playlist_items_uses_env_youtube_uploads_playlist_id(monkeypatch):
+    from strands_pack import youtube_read
+
+    mock_service = MagicMock()
+    mock_service.playlistItems.return_value.list.return_value.execute.return_value = {
+        "items": [{"id": "it1"}],
+    }
+
+    monkeypatch.setenv("YOUTUBE_UPLOADS_PLAYLIST_ID", "PL_ENV_456")
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
+        mock_get_service.return_value = mock_service
+        result = youtube_read(action="list_playlist_items")
+        assert result["success"] is True
+        _, call_kwargs = mock_service.playlistItems.return_value.list.call_args
+        assert call_kwargs["playlistId"] == "PL_ENV_456"
 
 
 def test_youtube_list_playlists_calls_api():
@@ -245,7 +244,7 @@ def test_youtube_list_playlists_calls_api():
         "nextPageToken": "token123",
     }
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(
             action="list_playlists", channel_id="UC123", max_results=5
@@ -263,24 +262,19 @@ def test_youtube_get_channels_by_id():
         "items": [{"id": "ch1", "snippet": {"title": "Test Channel"}}]
     }
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = mock_service
         result = youtube_read(action="get_channels", channel_ids=["ch1"])
         assert result["success"] is True
         assert len(result["items"]) == 1
 
 
-def test_youtube_auth_required():
+def test_youtube_api_key_required():
     from strands_pack import youtube_read
 
-    with patch("strands_pack.youtube._get_service") as mock_get_service:
+    with patch("strands_pack.youtube_read._get_service") as mock_get_service:
         mock_get_service.return_value = None
-        with patch("strands_pack.google_auth.needs_auth_response") as mock_auth:
-            mock_auth.return_value = {
-                "success": False,
-                "error": "Authentication required",
-                "auth_required": True,
-            }
-            result = youtube_read(action="search", q="test")
-            assert result["success"] is False
-            assert result["auth_required"] is True
+        result = youtube_read(action="search", q="test")
+        assert result["success"] is False
+        assert "YOUTUBE_API_KEY" in result["error"]
+        assert "hint" in result

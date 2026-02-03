@@ -20,7 +20,8 @@ Recommended OAuth scopes (write)
 
 Optional defaults (env)
 -----------------------
-- MY_UPLOADED_VIDEO_PLAYLIST_ID: Default `playlist_id` if omitted
+- YOUTUBE_UPLOADS_PLAYLIST_ID: Default `playlist_id` if omitted (recommended)
+- Legacy aliases (still supported): MY_UPLOADED_VIDEO_PLAYLIST_ID
 
 Supported actions
 -----------------
@@ -91,7 +92,13 @@ def _err(message: str, **data: Any) -> Dict[str, Any]:
 
 
 def _get_default_uploaded_playlist_id() -> Optional[str]:
-    for k in ("MY_UPLOADED_VIDEO_PLAYLIST_ID", "YOUTUBE_UPLOADED_VIDEO_PLAYLIST_ID", "YOUTUBE_DEFAULT_UPLOADED_PLAYLIST_ID"):
+    for k in (
+        "YOUTUBE_UPLOADS_PLAYLIST_ID",
+        "YOUTUBE_UPLOADED_VIDEO_PLAYLIST_ID",
+        "YOUTUBE_DEFAULT_UPLOADED_PLAYLIST_ID",
+        "YOUTUBE_DEFAULT_UPLOADS_PLAYLIST_ID",
+        "MY_UPLOADED_VIDEO_PLAYLIST_ID",
+    ):
         v = os.environ.get(k)
         if v and v.strip():
             return v.strip()
@@ -360,7 +367,7 @@ def youtube_write(
             - "set_video_privacy"
         video_id: Target YouTube video ID.
         playlist_id: Target playlist ID (optional for remove if playlist_item_id is provided).
-            If omitted for playlist actions, defaults to MY_UPLOADED_VIDEO_PLAYLIST_ID when available.
+            If omitted for playlist actions, defaults to YOUTUBE_UPLOADS_PLAYLIST_ID (or legacy MY_UPLOADED_VIDEO_PLAYLIST_ID) when available.
         playlist_item_id: PlaylistItem ID to remove directly (preferred).
         title: New title (update_video_metadata).
         description: New description (update_video_metadata).
@@ -426,14 +433,14 @@ def youtube_write(
             if not video_id:
                 return _err("video_id is required")
             if not playlist_id:
-                return _err("playlist_id is required (or set MY_UPLOADED_VIDEO_PLAYLIST_ID)")
+                return _err("playlist_id is required (or set YOUTUBE_UPLOADS_PLAYLIST_ID)")
             return _add_video_to_playlist(service=service, playlist_id=playlist_id, video_id=video_id, position=position)
 
         if action == "remove_video_from_playlist":
             if playlist_item_id is None and not video_id:
                 return _err("video_id is required when playlist_item_id is not provided")
             if playlist_item_id is None and not playlist_id:
-                return _err("playlist_id is required when playlist_item_id is not provided (or set MY_UPLOADED_VIDEO_PLAYLIST_ID)")
+                return _err("playlist_id is required when playlist_item_id is not provided (or set YOUTUBE_UPLOADS_PLAYLIST_ID)")
             return _remove_video_from_playlist(
                 service=service,
                 playlist_item_id=playlist_item_id,

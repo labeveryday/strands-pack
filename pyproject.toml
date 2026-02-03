@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "strands-pack"
-version = "0.1.0"
+version = "0.1.0.1"
 description = "Custom tool library for Strands Agents"
 readme = "README.md"
 license = {text = "MIT"}

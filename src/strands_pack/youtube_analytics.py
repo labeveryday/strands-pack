@@ -8,7 +8,7 @@ This is separate from the YouTube Data API v3:
   - YouTube Analytics API: performance metrics (views, watch time, etc.)
 
 Reference:
-    https://developers.google.com/youtube/v3/getting-started
+    https://developers.google.com/youtube/analytics
 
 Installation:
     pip install "strands-pack[youtube]"
