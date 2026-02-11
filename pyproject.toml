@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "strands-pack"
-version = "0.1.0.4"
+version = "0.1.0.5"
 description = "Custom tool library for Strands Agents"
 readme = "README.md"
 license = {text = "MIT"}
@@ -27,6 +27,40 @@ classifiers = [
 ]
 dependencies = [
     "strands-agents>=0.1.0",
+    # Core utilities
+    "python-dotenv>=1.0.0",
+    "requests>=2.28.0",
+    "Pillow>=10.0.0",
+    # Google Workspace & YouTube
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+    # AI services
+    "google-genai>=1.0.0",
+    "openai>=1.0.0",
+    # AWS
+    "boto3>=1.26.0",
+    # Media & Files
+    "pymupdf>=1.23.0",
+    "openpyxl>=3.1.0",
+    "pydub>=0.25.0",
+    "qrcode>=7.4.0",
+    "pyzbar>=0.1.9",
+    # YouTube transcript
+    "youtube-transcript-api>=0.6.2",
+    # Productivity
+    "notion-client>=2.0.0",
+    # Browser automation
+    "playwright>=1.42.0",
+    # Vector DB & Embeddings
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.2.0",
+    # Smart home
+    "phue>=1.1",
+    # PDF to Markdown
+    "pymupdf4llm>=0.0.10",
+    # BM25 keyword search
+    "rank-bm25>=0.2.2",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -175,6 +209,12 @@ twilio = ["requests>=2.28.0"]
 # ChromaDB vector database
 chromadb = ["chromadb>=0.4.0"]
 
+# PDF to Markdown (high-quality LLM-ready conversion)
+pdf_to_markdown = ["pymupdf4llm>=0.0.10"]
+
+# BM25 keyword search for hybrid retrieval
+keyword_search = ["rank-bm25>=0.2.2"]
+
 # Philips Hue Bridge control
 hue = ["phue>=1.1"]
 
@@ -212,6 +252,8 @@ all = [
     "strands-pack[qrcode]",
     "strands-pack[twilio]",
     "strands-pack[chromadb]",
+    "strands-pack[pdf_to_markdown]",
+    "strands-pack[keyword_search]",
     "strands-pack[hue]",
 ]
 

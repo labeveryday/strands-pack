@@ -107,6 +107,12 @@ from strands_pack.notion import notion
 # Consolidated PDF tool (require pymupdf)
 from strands_pack.pdf import pdf
 
+# PDF to Markdown tool (require pymupdf4llm)
+from strands_pack.pdf_to_markdown import pdf_to_markdown
+
+# BM25 keyword search tool (require rank-bm25)
+from strands_pack.keyword_search import keyword_search
+
 # Playwright browser tool (require playwright)
 from strands_pack.playwright_browser import playwright_browser
 
@@ -217,6 +223,8 @@ __all__ = [
     "local_embeddings",
     "openai_embeddings",
     "chromadb_tool",
+    "keyword_search",
+    "pdf_to_markdown",
     "hue",
     # Code reader tool
     "grab_code",

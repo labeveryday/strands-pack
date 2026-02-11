@@ -45,13 +45,20 @@ from typing import Any, Dict, List, Optional
 
 from strands import tool
 
-try:
-    from sentence_transformers import SentenceTransformer
+# Lazy import - SentenceTransformer is heavy (loads PyTorch)
+_SentenceTransformer = None
 
-    HAS_SENTENCE_TRANSFORMERS = True
-except ImportError:  # pragma: no cover
-    SentenceTransformer = None
-    HAS_SENTENCE_TRANSFORMERS = False
+
+def _get_sentence_transformer():
+    """Lazy load SentenceTransformer to avoid slow import on module load."""
+    global _SentenceTransformer
+    if _SentenceTransformer is None:
+        try:
+            from sentence_transformers import SentenceTransformer
+            _SentenceTransformer = SentenceTransformer
+        except ImportError:
+            raise ImportError("sentence-transformers not installed. Run: pip install sentence-transformers")
+    return _SentenceTransformer
 
 
 def _ok(**data: Any) -> Dict[str, Any]:
@@ -71,12 +78,14 @@ def _err(message: str, *, error_type: Optional[str] = None, **data: Any) -> Dict
 def _require_deps(embedder_override: Any) -> Optional[Dict[str, Any]]:
     if embedder_override is not None:
         return None
-    if HAS_SENTENCE_TRANSFORMERS:
+    try:
+        _get_sentence_transformer()
         return None
-    return _err(
-        "Missing local embeddings dependency. Install with: pip install strands-pack[local_embeddings]",
-        error_type="MissingDependency",
-    )
+    except ImportError:
+        return _err(
+            "Missing local embeddings dependency. Install with: pip install sentence-transformers",
+            error_type="MissingDependency",
+        )
 
 
 _MODEL_CACHE_LOCK = threading.Lock()
@@ -107,6 +116,8 @@ def _cache_max_size() -> int:
 def _get_embedder(model: str, embedder_override: Any):
     if embedder_override is not None:
         return embedder_override
+
+    SentenceTransformer = _get_sentence_transformer()
     max_size = _cache_max_size()
     if max_size == 0:
         # SentenceTransformer() may download model weights on first run.

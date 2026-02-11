@@ -17,16 +17,7 @@ AI media generation, AWS services, Google Workspace, social platforms, smart hom
 pip install strands-pack
 ```
 
-Install optional dependencies for specific tools:
-
-```bash
-pip install strands-pack[gemini]     # Gemini AI (image, video, music)
-pip install strands-pack[openai]     # OpenAI (image, video, embeddings)
-pip install strands-pack[aws]        # AWS (S3, DynamoDB, Lambda, SQS, SNS)
-pip install strands-pack[gmail]      # Gmail API
-pip install strands-pack[discord]    # Discord bot
-pip install strands-pack[all]        # Everything
-```
+All tool dependencies are included by default.
 
 ---
 
@@ -118,6 +109,7 @@ agent("Create a tasks table and add 'Review PR' as a new task")
 | `calendly` | Scheduling |
 | `excel` | Excel file manipulation |
 | `pdf` | PDF operations |
+| `pdf_to_markdown` | PDF to markdown conversion (LLM-ready) |
 | `image` | Image processing |
 | `audio` | Audio processing |
 | `qrcode_tool` | QR code generation/reading |
@@ -132,6 +124,7 @@ agent("Create a tasks table and add 'Review PR' as a new task")
 | `local_scheduler` | SQLite-backed scheduler |
 | `local_embeddings` | Local embeddings (SentenceTransformers) |
 | `openai_embeddings` | OpenAI embeddings API |
+| `keyword_search` | BM25 keyword search for hybrid retrieval |
 
 ### Developer & Utilities
 
