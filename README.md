@@ -246,4 +246,4 @@ MIT License
 
 ---
 
-Created by **Du'An Lightfoot** ([@labeveryday](https://github.com/labeveryday))
+Created by [Du'An Lightfoot](https://duanlightfoot.com) | [@labeveryday](https://github.com/labeveryday)
