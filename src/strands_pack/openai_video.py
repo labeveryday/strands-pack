@@ -265,12 +265,10 @@ def _wait_for_completion(
     poll_interval_seconds: int = 5,
 ) -> Dict[str, Any]:
     start = time.time()
-    last: Dict[str, Any] = {}
     while True:
         res = _retrieve_job(client, video_id)
         if not res.get("success"):
             return res
-        last = res
         status = (res.get("video") or {}).get("status")
         if status in ("completed", "failed", "cancelled", "canceled", "expired"):
             if status == "completed":

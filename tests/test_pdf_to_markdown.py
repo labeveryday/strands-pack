@@ -127,6 +127,7 @@ def test_convert_missing_input_path():
 def test_from_arxiv_success(monkeypatch):
     """Test from_arxiv with mocked ar5iv response."""
     import requests as requests_mod
+
     from strands_pack.pdf_to_markdown import pdf_to_markdown
 
     mock_html = """

@@ -44,9 +44,9 @@ def test_import_consolidated_tools():
         lambda_tool,
         linkedin,
         load_json,
+        local_embeddings,
         local_queue,
         local_scheduler,
-        local_embeddings,
         notion,
         openai_embeddings,
         pdf,
@@ -56,11 +56,11 @@ def test_import_consolidated_tools():
         save_json,
         secrets_manager,
         sns,
-        sqs,
         sqlite,
+        sqs,
+        twilio_tool,
         # Utility tools (separate functions)
         validate_email,
-        twilio_tool,
         word_count,
         x,
         youtube,
@@ -132,8 +132,8 @@ def test_import_individual_modules():
     from strands_pack import audio as aud
     from strands_pack import calendly as cal
     from strands_pack import carbon as c
-    from strands_pack import code_reader, utilities
     from strands_pack import chromadb_tool as cdb
+    from strands_pack import code_reader, utilities
     from strands_pack import dynamodb as ddb
     from strands_pack import eventbridge_scheduler as ebs
     from strands_pack import excel as ex
@@ -153,9 +153,9 @@ def test_import_individual_modules():
     from strands_pack import image as img
     from strands_pack import lambda_tool as lt
     from strands_pack import linkedin as li
+    from strands_pack import local_embeddings as le
     from strands_pack import local_queue as lq
     from strands_pack import local_scheduler as ls
-    from strands_pack import local_embeddings as le
     from strands_pack import notion as no
     from strands_pack import openai_embeddings as oe
     from strands_pack import pdf as pd
@@ -164,8 +164,8 @@ def test_import_individual_modules():
     from strands_pack import s3 as s3_tool
     from strands_pack import secrets_manager as sm
     from strands_pack import sns as s
-    from strands_pack import sqs as sq
     from strands_pack import sqlite as sq3
+    from strands_pack import sqs as sq
     from strands_pack import twilio_tool as tw
     from strands_pack import x as xx
     from strands_pack import youtube as yt

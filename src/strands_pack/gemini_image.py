@@ -380,7 +380,7 @@ def _generate_image(
             return _err(str(e))
 
         try:
-            for img_bytes, path in zip(to_write, file_paths):
+            for img_bytes, path in zip(to_write, file_paths, strict=True):
                 _save_image_bytes(image_bytes=img_bytes, file_path=path, output_format=output_format)
         except Exception as e:
             return _err(str(e))
@@ -492,7 +492,7 @@ def _edit_image(
             return _err(str(e))
 
         try:
-            for img_bytes, path in zip(to_write, file_paths):
+            for img_bytes, path in zip(to_write, file_paths, strict=True):
                 _save_image_bytes(image_bytes=img_bytes, file_path=path, output_format=output_format)
         except Exception as e:
             return _err(str(e))
@@ -609,7 +609,7 @@ def _chat(
             return _err(str(e), chat_id=chat_id)
 
         try:
-            for img_bytes, path in zip(to_write, file_paths):
+            for img_bytes, path in zip(to_write, file_paths, strict=True):
                 _save_image_bytes(image_bytes=img_bytes, file_path=path, output_format=output_format)
         except Exception as e:
             return _err(str(e), chat_id=chat_id)

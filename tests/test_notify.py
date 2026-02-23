@@ -32,7 +32,7 @@ class TestNotifyTool:
         assert r["routed_to"] == "local"
 
     def test_rate_limit(self):
-        from strands_pack.notify import notify, _RECENT
+        from strands_pack.notify import _RECENT, notify
         _RECENT.clear()  # Reset rate limit state
         # Set a very low rate limit and send twice immediately
         r1 = notify(action="notify", title="t", message="m", sound=False, rate_limit_per_minute=1)
@@ -42,7 +42,7 @@ class TestNotifyTool:
         assert r2.get("error_type") == "RateLimited"
 
     def test_dedupe(self):
-        from strands_pack.notify import notify, _RECENT_DEDUPE
+        from strands_pack.notify import _RECENT_DEDUPE, notify
         _RECENT_DEDUPE.clear()  # Reset dedupe state
         r1 = notify(action="notify", title="t", message="m", sound=False, dedupe_key="k", dedupe_window_seconds=60)
         r2 = notify(action="notify", title="t", message="m", sound=False, dedupe_key="k", dedupe_window_seconds=60)

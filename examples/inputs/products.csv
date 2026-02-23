@@ -1,0 +1,11 @@
+id,name,category,price,stock,description
+1,Laptop Pro 15,Electronics,1299.99,45,High-performance laptop with 15-inch display
+2,Wireless Mouse,Electronics,29.99,200,Ergonomic wireless mouse with USB receiver
+3,Standing Desk,Furniture,449.00,30,Adjustable height standing desk
+4,Office Chair,Furniture,299.00,50,Ergonomic office chair with lumbar support
+5,Monitor 27,Electronics,349.99,75,27-inch 4K monitor with HDR
+6,Keyboard Mechanical,Electronics,89.99,120,RGB mechanical keyboard with Cherry MX switches
+7,Desk Lamp,Furniture,45.00,85,LED desk lamp with adjustable brightness
+8,USB Hub,Electronics,24.99,150,7-port USB 3.0 hub
+9,Webcam HD,Electronics,79.99,60,1080p webcam with built-in microphone
+10,Notebook Set,Office,12.99,300,Pack of 3 lined notebooks

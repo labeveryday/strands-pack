@@ -51,8 +51,8 @@ from __future__ import annotations
 
 import base64
 import mimetypes
-from pathlib import Path
 from email.message import EmailMessage
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from strands import tool

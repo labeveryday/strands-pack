@@ -57,7 +57,7 @@ def _get_sentence_transformer():
             from sentence_transformers import SentenceTransformer
             _SentenceTransformer = SentenceTransformer
         except ImportError:
-            raise ImportError("sentence-transformers not installed. Run: pip install sentence-transformers")
+            raise ImportError("sentence-transformers not installed. Run: pip install sentence-transformers") from None
     return _SentenceTransformer
 
 
@@ -155,14 +155,14 @@ def _cosine_similarity(a: List[float], b: List[float], *, normalize_inputs: bool
         nb = math.sqrt(sum(x * x for x in b))
         if na == 0.0 or nb == 0.0:
             raise ValueError("embeddings must not be all zeros")
-        return sum((x / na) * (y / nb) for x, y in zip(a, b))
+        return sum((x / na) * (y / nb) for x, y in zip(a, b, strict=True))
 
     # raw cosine; guard against zero vectors
     na = math.sqrt(sum(x * x for x in a))
     nb = math.sqrt(sum(x * x for x in b))
     if na == 0.0 or nb == 0.0:
         raise ValueError("embeddings must not be all zeros")
-    return sum(x * y for x, y in zip(a, b)) / (na * nb)
+    return sum(x * y for x, y in zip(a, b, strict=True)) / (na * nb)
 
 
 @tool

@@ -24,6 +24,7 @@ def test_s3_put_text_validates_args():
 
 def test_s3_head_object_returns_metadata():
     from datetime import datetime, timezone
+
     from strands_pack.s3 import s3
 
     class FakeClient:

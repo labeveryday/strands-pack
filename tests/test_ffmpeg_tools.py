@@ -10,8 +10,8 @@ import pytest
 # Import helper functions for testing
 from strands_pack.ffmpeg import (
     _check_ffmpeg,
-    _parse_timestamp,
     _parse_silencedetect,
+    _parse_timestamp,
     _run_ffmpeg,
 )
 

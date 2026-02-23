@@ -120,13 +120,13 @@ def _cosine_similarity(a: List[float], b: List[float], *, normalize_inputs: bool
         nb = math.sqrt(sum(x * x for x in b))
         if na == 0.0 or nb == 0.0:
             raise ValueError("embeddings must not be all zeros")
-        return sum((x / na) * (y / nb) for x, y in zip(a, b))
+        return sum((x / na) * (y / nb) for x, y in zip(a, b, strict=True))
 
     na = math.sqrt(sum(x * x for x in a))
     nb = math.sqrt(sum(x * x for x in b))
     if na == 0.0 or nb == 0.0:
         raise ValueError("embeddings must not be all zeros")
-    return sum(x * y for x, y in zip(a, b)) / (na * nb)
+    return sum(x * y for x, y in zip(a, b, strict=True)) / (na * nb)
 
 
 @tool

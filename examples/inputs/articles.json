@@ -1,0 +1,64 @@
+{
+  "articles": [
+    {
+      "id": "tech-1",
+      "title": "Introduction to Machine Learning",
+      "content": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience. It focuses on developing algorithms that can access data and use it to learn for themselves.",
+      "category": "AI"
+    },
+    {
+      "id": "tech-2",
+      "title": "Python for Data Science",
+      "content": "Python has become the go-to language for data science due to its simplicity and powerful libraries like NumPy, Pandas, and Scikit-learn. It enables rapid prototyping and production-ready solutions.",
+      "category": "Programming"
+    },
+    {
+      "id": "tech-3",
+      "title": "Understanding Neural Networks",
+      "content": "Neural networks are computing systems inspired by biological neural networks in the brain. They consist of layers of interconnected nodes that process information and learn patterns from data.",
+      "category": "AI"
+    },
+    {
+      "id": "tech-4",
+      "title": "Cloud Computing Fundamentals",
+      "content": "Cloud computing delivers computing services over the internet including servers, storage, databases, networking, and software. Major providers include AWS, Azure, and Google Cloud Platform.",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "tech-5",
+      "title": "RESTful API Design",
+      "content": "REST APIs use HTTP methods to perform operations on resources. Good API design includes proper versioning, clear endpoints, appropriate status codes, and comprehensive documentation.",
+      "category": "Development"
+    },
+    {
+      "id": "tech-6",
+      "title": "Docker and Containerization",
+      "content": "Docker packages applications into containers that include everything needed to run. Containers are lightweight, portable, and ensure consistency across development, testing, and production environments.",
+      "category": "DevOps"
+    },
+    {
+      "id": "tech-7",
+      "title": "Natural Language Processing",
+      "content": "NLP enables computers to understand, interpret, and generate human language. Applications include sentiment analysis, chatbots, translation, and text summarization using transformer models.",
+      "category": "AI"
+    },
+    {
+      "id": "tech-8",
+      "title": "Database Design Principles",
+      "content": "Good database design involves normalization, proper indexing, and choosing between SQL and NoSQL based on requirements. Performance optimization includes query tuning and caching strategies.",
+      "category": "Development"
+    },
+    {
+      "id": "tech-9",
+      "title": "Kubernetes Orchestration",
+      "content": "Kubernetes automates deployment, scaling, and management of containerized applications. It handles load balancing, service discovery, and ensures high availability across clusters.",
+      "category": "DevOps"
+    },
+    {
+      "id": "tech-10",
+      "title": "Cybersecurity Best Practices",
+      "content": "Security practices include encryption, authentication, authorization, and regular audits. Common threats are SQL injection, XSS, CSRF, and social engineering attacks.",
+      "category": "Security"
+    }
+  ]
+}

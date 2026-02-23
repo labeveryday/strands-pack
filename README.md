@@ -3,9 +3,9 @@
 [![PyPI version](https://badge.fury.io/py/strands-pack.svg)](https://badge.fury.io/py/strands-pack)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-833%20passed-brightgreen.svg)](https://github.com/labeveryday/strands-pack)
+[![Tests](https://img.shields.io/badge/tests-856%20passed-brightgreen.svg)](https://github.com/labeveryday/strands-pack)
 
-**51 ready-to-use tools for [Strands Agents](https://github.com/strands-agents/sdk-python)**
+**53 ready-to-use tools for [Strands Agents](https://github.com/strands-agents/sdk-python)**
 
 AI media generation, AWS services, Google Workspace, social platforms, smart home, and more.
 
@@ -14,10 +14,13 @@ AI media generation, AWS services, Google Workspace, social platforms, smart hom
 ## Installation
 
 ```bash
-pip install strands-pack
+pip install strands-pack                    # lightweight core
+pip install strands-pack[aws]               # add AWS tools (boto3)
+pip install strands-pack[gmail,youtube]     # add specific tools
+pip install strands-pack[all]               # install everything
 ```
 
-All tool dependencies are included by default.
+Install only the extras you need. Each tool's dependencies are listed in the optional groups below.
 
 ---
 
@@ -64,6 +67,7 @@ agent("Create a tasks table and add 'Review PR' as a new task")
 | `apigateway_http_api` | HTTP APIs with Lambda |
 | `apigateway_rest_api` | REST APIs with API keys |
 | `secrets_manager` | Secrets access (safe-by-default) |
+| `list_managed_resources` | Inventory of strands-pack managed resources |
 
 ### Google Workspace
 

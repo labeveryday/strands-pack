@@ -49,6 +49,7 @@ from typing import Any, Dict, Optional, Tuple
 from strands import tool
 
 from strands_pack.aws_tags import aws_tags_dict
+
 try:
     import boto3
 
@@ -316,32 +317,6 @@ def apigateway_rest_api(
         >>> apigateway_rest_api(action="create_rest_lambda_api", name="agent-api", lambda_arn="arn:aws:lambda:...")
     """
     action = (action or "").strip()
-
-    # Build kwargs dict from explicit parameters for internal use
-    kwargs: Dict[str, Any] = {
-        "name": name,
-        "description": description,
-        "rest_api_id": rest_api_id,
-        "path": path,
-        "method": method,
-        "lambda_arn": lambda_arn,
-        "stage_name": stage_name,
-        "require_api_key": require_api_key,
-        "auto_add_permission": auto_add_permission,
-        "permission_scope": permission_scope,
-        "strict_aws_ids": strict_aws_ids,
-        "statement_id": statement_id,
-        "throttle_rate_limit": throttle_rate_limit,
-        "throttle_burst_limit": throttle_burst_limit,
-        "quota_limit": quota_limit,
-        "quota_period": quota_period,
-        "enabled": enabled,
-        "usage_plan_id": usage_plan_id,
-        "api_key_id": api_key_id,
-        "create_api_key": create_api_key,
-        "create_usage_plan": create_usage_plan,
-        "tags": tags,
-    }
 
     try:
         apigw = _get_apigw()

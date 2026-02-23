@@ -43,6 +43,7 @@ from typing import Any, Dict, Optional
 from strands import tool
 
 from strands_pack.aws_tags import aws_tags_dict
+
 try:
     import boto3
 

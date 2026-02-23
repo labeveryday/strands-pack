@@ -98,9 +98,9 @@ Requirements:
     pip install strands-pack[github]
 """
 
-import os
 import base64
-from typing import Any, Dict, Optional, List
+import os
+from typing import Any, Dict, List, Optional
 
 from strands import tool
 

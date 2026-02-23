@@ -1,0 +1,64 @@
+{
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "How do I reset my password?",
+      "answer": "To reset your password, click the 'Forgot Password' link on the login page. Enter your email address and we'll send you a reset link. The link expires in 24 hours.",
+      "category": "Account"
+    },
+    {
+      "id": "faq-2",
+      "question": "What payment methods do you accept?",
+      "answer": "We accept Visa, MasterCard, American Express, PayPal, and bank transfers. All transactions are encrypted and secure. You can save multiple payment methods in your account.",
+      "category": "Billing"
+    },
+    {
+      "id": "faq-3",
+      "question": "How do I cancel my subscription?",
+      "answer": "Go to Settings > Subscription > Cancel Plan. Your access continues until the end of the billing period. You can reactivate anytime without losing your data.",
+      "category": "Billing"
+    },
+    {
+      "id": "faq-4",
+      "question": "How do I export my data?",
+      "answer": "Navigate to Settings > Data > Export. Choose your format (CSV, JSON, or PDF) and select what data to include. Large exports are emailed as a download link.",
+      "category": "Data"
+    },
+    {
+      "id": "faq-5",
+      "question": "What are the system requirements?",
+      "answer": "Our web app works on Chrome, Firefox, Safari, and Edge. For mobile, we support iOS 14+ and Android 10+. Minimum screen resolution is 1024x768.",
+      "category": "Technical"
+    },
+    {
+      "id": "faq-6",
+      "question": "How do I contact support?",
+      "answer": "Email support@example.com or use the in-app chat. Premium users get priority phone support. Response time is typically under 4 hours during business hours.",
+      "category": "Support"
+    },
+    {
+      "id": "faq-7",
+      "question": "Can I upgrade my plan mid-cycle?",
+      "answer": "Yes, upgrades take effect immediately. You'll be charged a prorated amount for the remainder of the billing period. Downgrades take effect at the next billing cycle.",
+      "category": "Billing"
+    },
+    {
+      "id": "faq-8",
+      "question": "How do I enable two-factor authentication?",
+      "answer": "Go to Settings > Security > Two-Factor Auth. Choose between SMS or authenticator app. Scan the QR code with your app and enter the verification code to enable.",
+      "category": "Security"
+    },
+    {
+      "id": "faq-9",
+      "question": "What is your refund policy?",
+      "answer": "We offer a 30-day money-back guarantee for annual plans. Monthly plans can be canceled anytime but are non-refundable. Contact billing@example.com for refund requests.",
+      "category": "Billing"
+    },
+    {
+      "id": "faq-10",
+      "question": "How do I invite team members?",
+      "answer": "Go to Team > Invite Members. Enter email addresses and assign roles (Admin, Editor, Viewer). Invitees receive an email with instructions to join your workspace.",
+      "category": "Team"
+    }
+  ]
+}

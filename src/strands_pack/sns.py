@@ -28,6 +28,7 @@ from typing import Any, Dict, List, Optional
 from strands import tool
 
 from strands_pack.aws_tags import aws_tags_list
+
 try:
     import boto3
 

@@ -35,19 +35,22 @@ class TestGptImageHelpers:
     """Test helper functions."""
 
     def test_get_mime_type_png(self):
-        from strands_pack.openai_image import _get_mime_type
         from pathlib import Path
+
+        from strands_pack.openai_image import _get_mime_type
         assert _get_mime_type(Path("test.png")) == "image/png"
 
     def test_get_mime_type_jpeg(self):
-        from strands_pack.openai_image import _get_mime_type
         from pathlib import Path
+
+        from strands_pack.openai_image import _get_mime_type
         assert _get_mime_type(Path("test.jpg")) == "image/jpeg"
         assert _get_mime_type(Path("test.jpeg")) == "image/jpeg"
 
     def test_get_mime_type_webp(self):
-        from strands_pack.openai_image import _get_mime_type
         from pathlib import Path
+
+        from strands_pack.openai_image import _get_mime_type
         assert _get_mime_type(Path("test.webp")) == "image/webp"
 
     def test_enhance_prompt_with_style(self):

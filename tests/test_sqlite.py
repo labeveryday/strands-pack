@@ -434,6 +434,7 @@ def test_sqlite_truncate_requires_confirm(temp_db):
 def test_sqlite_export_import_csv_roundtrip(temp_db, temp_dir):
     """Export a table to CSV, then import into a new table."""
     from pathlib import Path
+
     from strands_pack import sqlite
 
     sqlite(action="create_table", db_path=temp_db, table="users", columns={"id": "INTEGER", "name": "TEXT"})

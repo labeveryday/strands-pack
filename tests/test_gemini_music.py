@@ -2,15 +2,15 @@
 
 import asyncio
 import os
+import sys
 import tempfile
+import types as py_types
 import wave
 from importlib import import_module
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
-import sys
-import types as py_types
 
 # Import the actual module (not the tool) for patching internal functions
 gemini_music_mod = import_module("strands_pack.gemini_music")
@@ -69,7 +69,7 @@ class TestGeminiMusicHelpers:
         if google_mod is None:
             google_mod = py_types.ModuleType("google")
             monkeypatch.setitem(sys.modules, "google", google_mod)
-        setattr(google_mod, "genai", genai_mod)
+        google_mod.genai = genai_mod
         monkeypatch.setitem(sys.modules, "google.genai", genai_mod)
 
         # Dummy streaming session that yields 3 seconds worth of PCM in 1s chunks.
@@ -178,7 +178,7 @@ class TestGeminiMusicHelpers:
         if google_mod is None:
             google_mod = py_types.ModuleType("google")
             monkeypatch.setitem(sys.modules, "google", google_mod)
-        setattr(google_mod, "genai", genai_mod)
+        google_mod.genai = genai_mod
         monkeypatch.setitem(sys.modules, "google.genai", genai_mod)
 
         bytes_per_second = 48000 * 2 * 2

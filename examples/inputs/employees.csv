@@ -1,0 +1,11 @@
+id,name,email,department,salary,hire_date
+1,John Smith,john.smith@company.com,Engineering,85000,2022-03-15
+2,Jane Doe,jane.doe@company.com,Marketing,75000,2021-06-01
+3,Bob Wilson,bob.wilson@company.com,Engineering,92000,2020-01-10
+4,Alice Brown,alice.brown@company.com,Sales,68000,2023-02-20
+5,Charlie Davis,charlie.davis@company.com,Engineering,105000,2019-08-05
+6,Diana Miller,diana.miller@company.com,HR,62000,2022-11-30
+7,Edward Jones,edward.jones@company.com,Finance,78000,2021-04-12
+8,Fiona Garcia,fiona.garcia@company.com,Marketing,71000,2023-01-08
+9,George Lee,george.lee@company.com,Engineering,98000,2020-07-22
+10,Hannah White,hannah.white@company.com,Sales,72000,2022-09-14

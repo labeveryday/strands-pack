@@ -138,7 +138,6 @@ def test_playwright_browser_navigate(mock_playwright):
 def test_playwright_browser_screenshot_default_path(mock_playwright, tmp_path, monkeypatch):
     """Test screenshot saves to .playwright-strands/ by default."""
     mod = mock_playwright["mod"]
-    page = mock_playwright["page"]
 
     # Change to tmp directory
     monkeypatch.chdir(tmp_path)

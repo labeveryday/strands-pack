@@ -8,7 +8,7 @@ def test_local_embeddings_invalid_action():
 
 def test_local_embeddings_missing_deps_returns_helpful_error():
     # Test that _require_deps returns error when HAS_SENTENCE_TRANSFORMERS is False
-    from strands_pack.local_embeddings import _require_deps, _err
+    from strands_pack.local_embeddings import _err, _require_deps
 
     # Directly test the helper function with no embedder_override and simulating missing deps
     # We can't easily monkeypatch the module constant, so test the logic directly
@@ -145,7 +145,7 @@ def test_local_embeddings_embed_texts_batch_size_chunks():
 
 def test_local_embeddings_model_cache_reuses_model():
     # Test that model caching works by using embedder_override
-    from strands_pack.local_embeddings import local_embeddings, _MODEL_CACHE
+    from strands_pack.local_embeddings import _MODEL_CACHE, local_embeddings
 
     class CountingEmbedder:
         call_count = 0

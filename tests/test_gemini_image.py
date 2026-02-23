@@ -497,6 +497,7 @@ class TestGeminiImageChat:
     @pytest.mark.skipif(not HAS_GENAI, reason="google-genai not installed")
     def test_chat_and_close_chat_success(self):
         import importlib
+
         from strands_pack import gemini_image
 
         # Get the actual module (not the decorated tool)

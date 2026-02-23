@@ -425,7 +425,7 @@ def _generate_video(
                 prompt=prompt,
                 config=config,
             )
-        except Exception as e:
+        except Exception:
             # generate_audio isn't sent; just re-raise.
             raise
 
@@ -578,7 +578,7 @@ def _image_to_video(
                 image=first_image,
                 config=config,
             )
-        except Exception as e:
+        except Exception:
             raise
 
         result = _poll_operation(client, operation, max_wait_seconds)

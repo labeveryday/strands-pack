@@ -216,5 +216,6 @@ chroma_data
 .playwright-mcp
 .agent-skills
 .playwright-strands
-examples
-.agent-skills
+system_prompts
+examples/output/
+examples/outputs/

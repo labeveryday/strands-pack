@@ -63,10 +63,10 @@ SCOPE_PRESETS: Dict[str, List[str]] = {
 SCOPE_PRESETS["all"] = sorted({s for scopes in SCOPE_PRESETS.values() for s in scopes})
 
 try:
-    from google.oauth2.credentials import Credentials as UserCredentials
-    from google.oauth2 import service_account
     from google.auth import default as google_auth_default
     from google.auth.transport.requests import Request
+    from google.oauth2 import service_account
+    from google.oauth2.credentials import Credentials as UserCredentials
 
     HAS_GOOGLE_AUTH = True
 except ImportError:
@@ -471,7 +471,7 @@ def start_auth_loopback(
                 self.wfile.write(f"Authorization failed: {e}".encode("utf-8"))
             finally:
                 # Shutdown the server after handling one request.
-                threading.Thread(target=httpd.shutdown, daemon=True).start()
+                threading.Thread(target=httpd.shutdown, daemon=True).start()  # noqa: F821
 
         def log_message(self, format, *args):  # noqa: A002
             # Silence server logs in agent runs.
