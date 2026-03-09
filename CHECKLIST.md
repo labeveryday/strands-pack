@@ -1,7 +1,7 @@
 # strands-pack Tool Checklist
 
-**Total Tools:** 53
-**Test Status:** 856 passed, 0 failing, 11 skipped
+**Total Tools:** 54
+**Test Status:** 893 passed, 0 failing, 11 skipped
 
 ## Communication & Social
 
@@ -48,6 +48,12 @@
 | apigateway_http | `apigateway_http_api` | 5 pass | Yes | 8 actions: list_apis, create_http_api, get/delete_api, create_stage, create_jwt_authorizer, add_lambda_route/permission - **Refactored** (no API keys) |
 | apigateway_rest | `apigateway_rest_api` | 2 pass | Yes | **Refactored** - 7 actions: create_rest_api, add_lambda_route, deploy_api, create_usage_plan, create_api_key, attach_api_key_to_usage_plan, create_rest_lambda_api - API keys + usage plans |
 | list_managed_resources | `managed_resources` | 2 pass | Yes | Scans 8 services (lambda, dynamodb, s3, sqs, sns, apigateway_http/rest, scheduler) for resources tagged `managed-by=strands-pack` - supports additional tag filters + safety caps |
+
+## Cloud Storage
+
+| Tool | Module | Tests | Live Tested | Notes |
+|------|--------|-------|-------------|-------|
+| box | `box` | 37 pass | Yes | **New** - 20 actions: get_current_user, list_folder, list_tree, create_folder, upload/download_file, get_file_info, delete_file/folder, search, create_shared_link, apply/get_metadata, create_task, assign_task, create_comment, ai_ask, ai_text_gen, ai_extract, ai_extract_structured |
 
 ## Databases
 

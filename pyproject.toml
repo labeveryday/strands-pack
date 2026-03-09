@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "strands-pack"
-version = "0.1.0"
+version = "0.1.1"
 description = "Custom tool library for Strands Agents"
 readme = "README.md"
 license = {text = "MIT"}
@@ -54,6 +54,9 @@ gemini = ["google-genai>=1.0.0"]
 
 # OpenAI tools (openai_image, openai_video, openai_embeddings)
 openai = ["openai>=1.0.0"]
+
+# Box Platform (file management, metadata, Box AI)
+box = ["box-sdk-gen>=1.0.0"]
 
 # Carbon code image generation
 carbon = ["playwright>=1.42.0"]
@@ -192,6 +195,7 @@ all = [
     "strands-pack[google_auth]",
     "strands-pack[gemini]",
     "strands-pack[openai]",
+    "strands-pack[box]",
     "strands-pack[carbon]",
     "strands-pack[playwright]",
     "strands-pack[aws]",

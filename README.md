@@ -3,9 +3,9 @@
 [![PyPI version](https://badge.fury.io/py/strands-pack.svg)](https://badge.fury.io/py/strands-pack)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-856%20passed-brightgreen.svg)](https://github.com/labeveryday/strands-pack)
+[![Tests](https://img.shields.io/badge/tests-893%20passed-brightgreen.svg)](https://github.com/labeveryday/strands-pack)
 
-**53 ready-to-use tools for [Strands Agents](https://github.com/strands-agents/sdk-python)**
+**54 ready-to-use tools for [Strands Agents](https://github.com/strands-agents/sdk-python)**
 
 AI media generation, AWS services, Google Workspace, social platforms, smart home, and more.
 
@@ -105,6 +105,12 @@ agent("Create a tasks table and add 'Review PR' as a new task")
 | `x` | Twitter/X (read-only) |
 | `twilio_tool` | SMS, voice, WhatsApp |
 
+### Cloud Storage
+
+| Tool | Description |
+|------|-------------|
+| `box` | Box Platform: files, folders, metadata, tasks, shared links, Box AI (20 actions) |
+
 ### Productivity
 
 | Tool | Description |
@@ -164,6 +170,12 @@ YOUTUBE_API_KEY=
 # Optional defaults (so you can omit IDs in prompts)
 YOUTUBE_CHANNEL_ID=
 YOUTUBE_UPLOADS_PLAYLIST_ID=
+
+# Box (choose one auth method)
+BOX_DEVELOPER_TOKEN=              # Testing (60 min)
+# BOX_CLIENT_ID=                  # CCG auth
+# BOX_CLIENT_SECRET=
+# BOX_JWT_CONFIG_PATH=            # JWT config file
 
 # Social
 DISCORD_BOT_TOKEN=

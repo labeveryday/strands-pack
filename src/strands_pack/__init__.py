@@ -13,6 +13,9 @@ from strands_pack.apigateway_rest_api import apigateway_rest_api
 # Audio tool (require pydub + ffmpeg system binary)
 from strands_pack.audio import audio
 
+# Box Platform tool (require box-sdk-gen)
+from strands_pack.box import box
+
 # Calendly tool (require requests)
 from strands_pack.calendly import calendly
 
@@ -169,10 +172,11 @@ from strands_pack.youtube_read import youtube, youtube_read
 from strands_pack.youtube_transcript import youtube_transcript
 from strands_pack.youtube_write import youtube_write
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     # Consolidated tools (use action parameter)
+    "box",
     "gemini_image",
     "gemini_video",
     "gemini_music",
